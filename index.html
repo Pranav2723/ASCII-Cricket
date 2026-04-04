@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Cricket Cup 2025-26 — Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:ital,wght@0,400;0,600;1,400&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- 🎨 Switch theme here: style1.css (dark cricket green) OR style2.css (light stadium) -->
+  <link rel="stylesheet" id="themeLink" href="style1.css">
+</head>
+<body>
+
+  <!-- THEME SWITCHER -->
+  <div class="theme-switcher">
+    <button class="theme-btn active" id="btn1" onclick="switchTheme('style1.css', this)">🌑 Dark Theme</button>
+    <button class="theme-btn" id="btn2" onclick="switchTheme('style2.css', this)">☀️ Light Theme</button>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- HERO -->
+    <header class="hero">
+      <span class="organiser-badge">Organised by ASCII 2025-26</span>
+      <div class="sport-icon">🏏</div>
+
+      <h1 class="hero-title">Computer Engineering Cricket<br><span class="accent">Cup</span></h1>
+
+      
+      <p class="hero-sub">Computer Engineering Department &nbsp;·&nbsp; Interdepartmental Cricket Championship</p>
+    </header>
+
+    <!-- FORM CARD -->
+    <main class="card" role="main">
+      <form id="regForm" novalidate>
+
+        <!-- PERSONAL INFO -->
+        <p class="section-label">Personal Info</p>
+        <div class="grid-2">
+          <div class="field">
+            <label for="fullname">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullname" placeholder="e.g. Rahul Sharma" autocomplete="name">
+            <span class="err-msg" id="fullname-err">Please enter your full name.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email ID <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@college.edu" autocomplete="email">
+            <span class="err-msg" id="email-err">Please enter a valid email.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="phone">Contact Number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="e.g. 9876543210" autocomplete="tel" maxlength="15">
+          <span class="err-msg" id="phone-err">Please enter a valid 10-digit number.</span>
+        </div>
+
+        <div class="field">
+          <label>Student Picture <span class="req">*</span></label>
+          <div class="upload-options" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px;">
+            <input type="file" id="picture" accept="image/*" style="max-width: 100%;">
+            <button type="button" id="btn-camera" style="padding: 8px 16px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 1rem; background: rgba(128,128,128,0.2); color: inherit; border: 1px solid rgba(128,128,128,0.5);">📷 Take Photo</button>
+          </div>
+          
+          <div id="camera-container" style="display: none; flex-direction: column; gap: 10px; align-items: center; margin-bottom: 10px; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 8px;">
+            <video id="camera-video" autoplay playsinline muted style="width: 100%; max-width: 320px; border-radius: 6px; background: #000;"></video>
+            <button type="button" id="btn-capture" style="padding: 8px 20px; border-radius: 6px; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 600;">📸 Capture</button>
+          </div>
+
+          <div id="preview-container" style="display: none; flex-direction: column; gap: 10px; align-items: center; margin-bottom: 10px;">
+            <img id="photo-preview" style="width: 100%; max-width: 320px; border-radius: 6px; border: 2px solid #ccc;"/>
+            <button type="button" id="btn-retake" style="padding: 6px 16px; border-radius: 6px; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 600;">🔄 Retake</button>
+          </div>
+
+          <span class="err-msg" id="picture-err">Please upload or take a picture.</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- GENDER -->
+        <p class="section-label">Gender</p>
+        <div class="field">
+          <div class="chip-group" id="genderGroup">
+            <input type="radio" name="gender" id="g-male" value="Male">
+            <label for="g-male">♂ Male</label>
+            <input type="radio" name="gender" id="g-female" value="Female">
+            <label for="g-female">♀ Female</label>
+          </div>
+          <span class="err-msg" id="gender-err">Please select your gender.</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- CLASS -->
+        <p class="section-label">Class / Year</p>
+        <div class="field">
+          <div class="chip-group" id="classGroup">
+            <input type="radio" name="class" id="c-fe"  value="FE">   <label for="c-fe">FE</label>
+            <input type="radio" name="class" id="c-sea" value="SE A"> <label for="c-sea">SE A</label>
+            <input type="radio" name="class" id="c-seb" value="SE B"> <label for="c-seb">SE B</label>
+            <input type="radio" name="class" id="c-te"  value="TE">   <label for="c-te">TE</label>
+            <input type="radio" name="class" id="c-be"  value="BE">   <label for="c-be">BE</label>
+          </div>
+          <span class="err-msg" id="class-err">Please select your class.</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ROLE -->
+        <p class="section-label">Your Playing Role</p>
+        <div class="field">
+          <div class="chip-group role-chip" id="roleGroup">
+            <input type="radio" name="role" id="r-bat"  value="Batsman">    <label for="r-bat">🏏 Batsman</label>
+            <input type="radio" name="role" id="r-bowl" value="Bowler">     <label for="r-bowl">🎯 Bowler</label>
+            <input type="radio" name="role" id="r-all"  value="All-Rounder"><label for="r-all">⚡ All-Rounder</label>
+          </div>
+          <span class="err-msg" id="role-err">Please select your role.</span>
+        </div>
+
+        <button type="submit" class="btn-submit">⚡ Register Now</button>
+
+      </form>
+    </main>
+
+    <p class="footer">
+      Organised by <strong>ASCII 2025-26</strong> &nbsp;|&nbsp; Computer Engineering Department &nbsp;|&nbsp; Interdepartmental Sports Committee
+    </p>
+  </div>
+
+  <!-- SUCCESS OVERLAY -->
+  <div class="success-overlay" id="successOverlay" role="dialog" aria-modal="true">
+    <div class="success-card">
+      <span class="success-icon">🏆</span>
+      <h2>You're In!</h2>
+      <p>Registration confirmed for</p>
+      <span class="success-name" id="successName"></span>
+      <p>Get ready to play for the CE team! Keep an eye on your email for further updates from <strong>ASCII 2025-26</strong>.</p>
+      <button class="btn-close" id="closeBtn">Back to Form</button>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDc5Ug9LGIWZGHtujza5Axm4p29vOmOHys",
+      authDomain: "ascii--cricket.firebaseapp.com",
+      projectId: "ascii--cricket",
+      storageBucket: "ascii--cricket.firebasestorage.app",
+      messagingSenderId: "601093120829",
+      appId: "1:601093120829:web:291a3a9021c20dc07adb54",
+      measurementId: "G-LETLV6N3LT"
+    };
+
+    // Initialize Firebase and Firestore
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    /* ── Theme switcher ── */
+    // Expose to window so onclick handlers in HTML can access it
+    window.switchTheme = function(css, btn) {
+      document.getElementById('themeLink').href = css;
+      document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    };
+
+    /* ── Camera Helpers ── */
+    window.capturedPhotoBase64 = null;
+    let cameraStream = null;
+
+    const btnCamera = document.getElementById('btn-camera');
+    const cameraContainer = document.getElementById('camera-container');
+    const cameraVideo = document.getElementById('camera-video');
+    const btnCapture = document.getElementById('btn-capture');
+    const previewContainer = document.getElementById('preview-container');
+    const photoPreview = document.getElementById('photo-preview');
+    const btnRetake = document.getElementById('btn-retake');
+    const pictureInput = document.getElementById('picture');
+
+    // Hide camera button if API is not supported (e.g. some in-app browsers or non-HTTPS)
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (btnCamera) btnCamera.style.display = 'none';
+    }
+
+    if (btnCamera) {
+      btnCamera.addEventListener('click', async () => {
+        try {
+          cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'user' } } });
+          cameraVideo.srcObject = cameraStream;
+          cameraContainer.style.display = 'flex';
+          previewContainer.style.display = 'none';
+          pictureInput.value = ''; // Clear file input
+          window.capturedPhotoBase64 = null;
+        } catch (err) {
+          alert("Unable to access camera: " + err.message);
+        }
+      });
+    }
+
+    if (btnCapture) {
+      btnCapture.addEventListener('click', () => {
+        if (!cameraStream) return;
+        
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = cameraVideo.videoWidth || 500;
+        canvas.height = cameraVideo.videoHeight || 500;
+        ctx.drawImage(cameraVideo, 0, 0, canvas.width, canvas.height);
+        
+        window.capturedPhotoBase64 = canvas.toDataURL('image/jpeg', 0.8);
+        photoPreview.src = window.capturedPhotoBase64;
+        
+        cameraContainer.style.display = 'none';
+        previewContainer.style.display = 'flex';
+        
+        // Stop tracks
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+        showErr('picture', false);
+      });
+    }
+
+    if (btnRetake) {
+      btnRetake.addEventListener('click', () => {
+        window.capturedPhotoBase64 = null;
+        btnCamera.click();
+      });
+    }
+
+    if (pictureInput) {
+      pictureInput.addEventListener('change', () => {
+        if (pictureInput.files.length > 0) {
+          window.capturedPhotoBase64 = null;
+          previewContainer.style.display = 'none';
+          if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+            cameraStream = null;
+            cameraContainer.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    /* ── Helpers ── */
+    const form    = document.getElementById('regForm');
+    const overlay = document.getElementById('successOverlay');
+
+    function val(id)     { return document.getElementById(id).value.trim(); }
+    function radVal(nm)  { const el = document.querySelector(`input[name="${nm}"]:checked`); return el ? el.value : ''; }
+
+    function showErr(id, show) {
+      const err = document.getElementById(id + '-err');
+      const inp = document.getElementById(id);
+      if (err) err.classList.toggle('show', show);
+      if (inp) inp.classList.toggle('error', show);
+    }
+    function showRadErr(id, show) {
+      document.getElementById(id + '-err').classList.toggle('show', show);
+    }
+
+    /* ── Validation ── */
+    function validate() {
+      let ok = true;
+      const nameOk  = /^[a-zA-Z\s.'-]{3,}$/.test(val('fullname'));
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'));
+      const phoneOk = /^[6-9]\d{9}$/.test(val('phone'));
+      const picOk   = document.getElementById('picture').files.length > 0 || !!window.capturedPhotoBase64;
+
+      showErr('fullname', !nameOk);  if (!nameOk)  ok = false;
+      showErr('email',    !emailOk); if (!emailOk) ok = false;
+      showErr('phone',    !phoneOk); if (!phoneOk) ok = false;
+      showErr('picture',  !picOk);   if (!picOk)   ok = false;
+      
+      ['gender','class','role'].forEach(nm => {
+        const set = !!radVal(nm);
+        showRadErr(nm, !set);
+        if (!set) ok = false;
+      });
+      return ok;
+    }
+
+    /* ── Submit ── */
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+      
+      const submitBtn = document.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        // Create a 6-second timeout promise 
+        // (Firestore tends to hang infinitely if the database isn't fully set up yet)
+        const timeout = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error("Timeout! Ensure Firestore is created in Test Mode.")), 6000)
+        );
+
+        const uploadAndSave = async () => {
+          let picBase64 = "";
+          const picFile = document.getElementById('picture').files[0];
+          
+          if (window.capturedPhotoBase64) {
+            // Already a data URL from camera
+            picBase64 = await new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                  const canvas = document.createElement('canvas');
+                  const MAX_WIDTH = 500;
+                  const MAX_HEIGHT = 500;
+                  let width = img.width;
+                  let height = img.height;
+                  if (width > height) {
+                    if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                  } else {
+                    if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                  }
+                  canvas.width = width; canvas.height = height;
+                  const ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0, width, height);
+                  resolve(canvas.toDataURL('image/jpeg', 0.6));
+                };
+                img.src = window.capturedPhotoBase64;
+            });
+          } else if (picFile) {
+            picBase64 = await new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                  const canvas = document.createElement('canvas');
+                  const MAX_WIDTH = 500;
+                  const MAX_HEIGHT = 500;
+                  let width = img.width;
+                  let height = img.height;
+                  if (width > height) {
+                    if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                  } else {
+                    if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                  }
+                  canvas.width = width; canvas.height = height;
+                  const ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0, width, height);
+                  resolve(canvas.toDataURL('image/jpeg', 0.6));
+                };
+                img.src = e.target.result;
+              };
+              reader.readAsDataURL(picFile);
+            });
+          }
+
+          // Save data to 'registrations' collection in Firestore
+          return addDoc(collection(db, "registrations"), {
+            fullname: val('fullname'),
+            email: val('email'),
+            phone: val('phone'),
+            pictureBase64: picBase64,
+            gender: radVal('gender'),
+            class: radVal('class'),
+            role: radVal('role'),
+            timestamp: new Date()
+          });
+        };
+        
+        await Promise.race([uploadAndSave(), timeout]);
+        
+        document.getElementById('successName').textContent = val('fullname');
+        overlay.classList.add('show');
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("Error saving data: " + error.message + "\n\nPlease check your Firebase Console and ensure 'Firestore Database' is created.");
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    /* ── Close success ── */
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      overlay.classList.remove('show');
+      form.reset();
+      window.capturedPhotoBase64 = null;
+      document.getElementById('preview-container').style.display = 'none';
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+      }
+      document.getElementById('camera-container').style.display = 'none';
+      
+      ['fullname','email','phone','picture'].forEach(id => showErr(id, false));
+      ['gender','class','role'].forEach(id => showRadErr(id, false));
+    });
+
+    /* ── Live clear ── */
+    ['fullname','email','phone','picture'].forEach(id =>
+      document.getElementById(id).addEventListener('input', () => showErr(id, false))
+    );
+    document.querySelectorAll('input[type="radio"]').forEach(r =>
+      r.addEventListener('change', () => showRadErr(r.name, false))
+    );
+  </script>
+</body>
+</html>
